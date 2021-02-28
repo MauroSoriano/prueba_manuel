@@ -6,6 +6,9 @@ class User_model extends CI_Model
     public $table = 'users';
     public $table_id = 'users_id';
 
+    public $cities = 'cities';
+    public $cities_id = 'cities_id';
+
     public function __construct()
     {
         parent::__construct();

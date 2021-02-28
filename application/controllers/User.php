@@ -8,6 +8,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->model('City_model');
         $this->load->database();
     }
 
@@ -20,6 +21,7 @@ class User extends CI_Controller
     public function showNew($user_id = null)
     {
         $vdata["first_name"] = $vdata["last_name"] = $vdata["email"] = "";
+        $vdata["cities"] = $this->City_model->findAll();
         if (isset($user_id)) {
 
             $user = $this->User_model->find($user_id);
@@ -28,6 +30,7 @@ class User extends CI_Controller
                 $vdata["first_name"] = $user->first_name;
                 $vdata["last_name"] = $user->last_name;
                 $vdata["email"] = $user->email;
+                $vdata["city_id"] = $user->city_id;
             }
         }
 
@@ -35,10 +38,12 @@ class User extends CI_Controller
             $data["first_name"] = $this->input->post("first_name");
             $data["last_name"] = $this->input->post("last_name");
             $data["email"] = $this->input->post("email");
+            $data["city_id"] = $this->input->post("city_id");
 
             $vdata["first_name"] = $this->input->post("first_name");
             $vdata["last_name"] = $this->input->post("last_name");
             $vdata["email"] = $this->input->post("email");
+            $vdata["city_id"] = $this->input->post("city_id");
 
             if (isset($user_id)) {
                 $this->User_model->update($user_id, $data);

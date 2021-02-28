@@ -53,15 +53,15 @@
                     echo form_input($input);
                     ?>
                 </div>
-                <!-- <div>
+                <div>
                     <label for="City" class="form-label">Ciudad</label>
-                    <select class="custom-select mb-3" aria-label="Default select example" id="city">
-                        <option selected>Elija una ciudad</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select mb-3" name="city_id">
+                        <option value="">Seleccione su ciudad</option>
+                        <?php foreach ($cities as $city) {?>
+                            <option value="<?php echo $city->id ?>"> <?php echo $city->name ?> </option>
+                        <?php }?>
                     </select>
-                </div> -->
+                </div>
                 <?php
                 echo form_submit('mysubmit', 'Enviar', "class='btn btn-primary'");
                 ?>
