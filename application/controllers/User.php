@@ -8,6 +8,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->helper("url");
         $this->load->model('City_model');
         $this->load->database();
     }
@@ -55,9 +56,11 @@ class User extends CI_Controller
         $this->load->view('users/new-user', $vdata);
     }
 
-    public function borrar()
+    public function borrar($user_id = null)
     {
-        # code...
+        $this->User_model->delete($user_id);
+
+        redirect("/usuarios");
     }
 
     public function ver($user_id = null)

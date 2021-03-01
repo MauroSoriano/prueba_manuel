@@ -21,25 +21,33 @@
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Email</th>
-              <!-- <th scope="col">Ciudad</th> -->
+              <th scope="col">Ciudad</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-
             <?php foreach ($users as $key => $u) : ?>
               <tr>
-                <th scope="row"><?php echo $u->id?></th>
-                <td><?php echo $u->first_name?></td>
-                <td><?php echo $u->last_name?></td>
-                <td>@<?php echo $u->email?></td>
+                <th scope="row"><?php echo $u->id ?></th>
+                <td><?php echo $u->first_name ?></td>
+                <td><?php echo $u->last_name ?></td>
+                <td><?php echo $u->email ?></td>
+                <td><?php echo $u->city_name ?></td>
                 <td>
-                  
+                  <a href="nuevo_usuario/<?php echo $u->id ?>">Editar</a>
+                  <a href="borrar_usuario/<?php echo $u->id ?>">Borrar</a>
                 </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

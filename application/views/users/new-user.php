@@ -58,7 +58,7 @@
                     <select class="custom-select mb-3" name="city_id">
                         <option value="">Seleccione su ciudad</option>
                         <?php foreach ($cities as $city) {?>
-                            <option value="<?php echo $city->id ?>"> <?php echo $city->name ?> </option>
+                            <option value="<?php echo $city->id ?>" <?php echo ($city_id == $city->id) ? "selected": ""?>> <?php echo $city->name ?> </option>
                         <?php }?>
                     </select>
                 </div>
