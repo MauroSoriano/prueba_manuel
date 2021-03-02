@@ -31,12 +31,26 @@ class User_model extends CI_Model
         $this->db->from('users');
         $this->db->join('cities', 'users.city_id = cities.id');
         $query = $this->db->get();
-
-        // $this->db->select();
-        // $this->db->from($this->table);
-
-        // $query = $this->db->get();
         return $query->result();
+    }
+
+    function pagination($page_size, $offset)
+    {
+        $this->db->select('users.*, cities.id AS city_id, cities.name AS city_name');
+        $this->db->from('users');
+        $this->db->join('cities', 'users.city_id = cities.id');
+        $this->db->limit($page_size, $offset);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function count()
+    {
+        $this->db->select();
+        $this->db->from('users');
+        $query = $this->db->get();
+        return $query->num_rows();
     }
 
     function insert($data)

@@ -12,6 +12,7 @@
 <body>
     <?php echo form_open(''); ?>
     <div class="container">
+        <a class="btn btn-primary mt-5" href=<?php echo base_url("usuarios/1") ?>>Regresar</a>
         <div class="row">
             <div class="col">
                 <div class="mt-5 mb-3">
@@ -57,14 +58,18 @@
                     <label for="City" class="form-label">Ciudad</label>
                     <select class="custom-select mb-3" name="city_id">
                         <option value="">Seleccione su ciudad</option>
-                        <?php foreach ($cities as $city) {?>
-                            <option value="<?php echo $city->id ?>" <?php echo ($city_id == $city->id) ? "selected": ""?>> <?php echo $city->name ?> </option>
-                        <?php }?>
+                        <?php foreach ($cities as $city) { ?>
+                            <?php if (isset($city_id)) { ?>
+                                <option value="<?php echo $city->id ?>" <?php echo ($city_id == $city->id) ? "selected" : "" ?>> <?php echo $city->name ?> </option>
+                            <?php } else { ?>
+                                <option value="<?php echo $city->id ?>"> <?php echo $city->name ?> </option>
+                            <?php } ?>
+                        <?php } ?>
                     </select>
                 </div>
-                <?php
+                <a href="<?php echo base_url("usuarios/1")?>"><?php
                 echo form_submit('mysubmit', 'Enviar', "class='btn btn-primary'");
-                ?>
+                ?></a>
             </div>
         </div>
     </div>

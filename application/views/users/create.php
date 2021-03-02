@@ -14,6 +14,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
+      <a class="btn btn-primary mt-5" href=<?php echo base_url("nuevo_usuario")?>>Nuevo Registro</a>
         <table class="table mt-5">
           <thead>
             <tr>
@@ -34,8 +35,8 @@
                 <td><?php echo $u->email ?></td>
                 <td><?php echo $u->city_name ?></td>
                 <td>
-                  <a href="nuevo_usuario/<?php echo $u->id ?>">Editar</a>
-                  <a href="borrar_usuario/<?php echo $u->id ?>">Borrar</a>
+                  <a href="<?php echo base_url("nuevo_usuario/"). $u->id ?>">Editar</a>
+                  <a href="<?php echo base_url("borrar_usuario/"). $u->id ?>">Borrar</a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -43,9 +44,26 @@
         </table>
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
+              <?php
+                $prev = $current_page - 1;
+                $next = $current_page + 1;
+
+                if ($prev <= 0) {
+                  $prev = 1;
+                }
+
+                if ($next > $last_page) {
+                  $next = $last_page;
+                }
+              ?>
+
+            <li class="page-item"><a class="page-link" href="<?php echo base_url(). "usuarios/" . $prev?>">Previous</a></li>
+
+            <?php for ($i=1; $i <= $last_page ; $i++) { ?>
+            <li class="page-item"><a class="page-link" href="<?php echo base_url(). "usuarios/" . $i?>"><?php echo $i?></a></li>
+            <?php } ?>
+            <li class="page-item"><a class="page-link" href="<?php echo base_url(). "usuarios/" . $next?>">Next</a></li>
           </ul>
         </nav>
       </div>
